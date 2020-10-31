@@ -10,12 +10,12 @@ if [ ! -f "/opt/gpdb/greenplum_path.sh" ]; then
 		ssh \
 		sudo \
 		time \
-		libzstd1-dev
-	add-apt-repository -y ppa:greenplum/db
-	apt update
-
-	apt install -y greenplum-db-oss
-	source /opt/gpdb/greenplum_path.sh
+		libzstd1-dev \
+		wget
+	
+	wget https://github.com/greenplum-db/gpdb/releases/download/6.11.2/greenplum-db-6.11.2-ubuntu18.04-amd64.deb
+	apt install -y ./greenplum-db-6.11.2-ubuntu18.04-amd64.deb
+	source /usr/local/greenplum-db/greenplum_path.sh
 	locale-gen en_US.utf8
 fi
 
@@ -49,12 +49,12 @@ if [ ! -d "/home/gpadmin" ]; then
 	chown gpadmin -R $DATA_DIR/gpdata
 	echo  "export DATA_DIR=$DATA_DIR" >> /home/gpadmin/.profile
 	echo  "export MASTER_DATA_DIRECTORY=$DATA_DIR/gpdata/gpmaster/gpsne-1" >> /home/gpadmin/.profile
-	echo  "export GPHOME=/opt/gpdb" >> /home/gpadmin/.profile
+	echo  "export GPHOME=/usr/local/greenplum-db" >> /home/gpadmin/.profile
 	echo  "source $GPHOME/greenplum_path.sh" >> /home/gpadmin/.profile
 
 	echo  "export DATA_DIR=$DATA_DIR" >> /home/gpadmin/.bashrc
 	echo  "export MASTER_DATA_DIRECTORY=$DATA_DIR/gpdata/gpmaster/gpsne-1" >> /home/gpadmin/.bashrc
-	echo  "export GPHOME=/opt/gpdb" >> /home/gpadmin/.bashrc
+	echo  "export GPHOME=/usr/local/greenplum-db" >> /home/gpadmin/.bashrc
 	echo  "source $GPHOME/greenplum_path.sh" >> /home/gpadmin/.bashrc
 
 	chown gpadmin:gpadmin /home/gpadmin/.profile
