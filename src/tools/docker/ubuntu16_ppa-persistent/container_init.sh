@@ -5,7 +5,6 @@ if [ ! -f "/opt/gpdb/greenplum_path.sh" ]; then
 	apt update
 	apt install -y \
 		software-properties-common \
-		python-software-properties \
 		less \
 		ssh \
 		sudo \
