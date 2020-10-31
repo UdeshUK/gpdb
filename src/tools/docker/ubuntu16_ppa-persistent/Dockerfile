@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 EXPOSE 5432
 
 ADD container_init.sh /container_init.sh
