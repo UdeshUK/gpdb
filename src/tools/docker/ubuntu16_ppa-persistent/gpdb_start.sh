@@ -1,6 +1,8 @@
 export DATA_DIR="/data"
 export GPHOME=/usr/local/greenplum-db
 SHELL=/bin/bash
+echo $GPHOME
+cat $GPHOME
 source $GPHOME/greenplum_path.sh
 MASTER_DATA_DIRECTORY=$DATA_DIR/gpdata/gpmaster/gpsne-1/
 
